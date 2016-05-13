@@ -19,4 +19,11 @@ public class BandTest {
   Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
   assertEquals("Pink Floyd", newBand.getName());
   }
+
+  @Test
+  public void Band_twoBandsNamesAreEqual_true() {
+    Band firstBand = new Band("Pink Floyd", "Psychedelic Rock");
+    Band secondBand = new Band("Pink Floyd", "Psychedelic Rock");
+    assertTrue(firstBand.equals(secondBand));
+  }
 }
