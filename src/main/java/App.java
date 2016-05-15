@@ -33,19 +33,24 @@ public class App {
     }, new VelocityTemplateEngine());
 
     post("/", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
       String genre = request.queryParams("genre");
-      if(name != null && genre != null) {
-        Band newBand = new Band(name, genre);
-        newBand.save();
+      if(name.equals("") || genre.equals("")) {
+        response.redirect("http://localhost:4567/");
+        return null;
       }
+      Band newBand = new Band(name, genre);
+      newBand.save();
+
       String venueName = request.queryParams("venueName");
       String location = request.queryParams("location");
-      if (venueName != null && location != null) {
-        Venue newVenue = new Venue(venueName, location);
-        newVenue.save();
-      }
+      // if(venueName.equals("")) {
+      //   response.redirect("http://localhost:4567/");
+      //   return null;
+      // }
+      Venue newVenue = new Venue(venueName, location);
+      newVenue.save();
+
       response.redirect("/");
       return null;
     });

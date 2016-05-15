@@ -20,7 +20,15 @@ p {
   text-align: center;
   letter-spacing: 2px;
 }
+.btn {
+  margin: 10px;
+}
 
-.new {
-  
+.btn-primary {
+  margin-top: 25px;
+}
+
+.homeLink {
+  margin: 50px;
+  float: left;
 }
