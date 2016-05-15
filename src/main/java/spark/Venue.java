@@ -39,8 +39,8 @@ public class Venue {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO venues (name, location) VALUES (:name, :location)";
       this.id = (int) con.createQuery(sql, true)
-        .addParameter("name", name)
-        .addParameter("location", location)
+        .addParameter("name", this.name)
+        .addParameter("location", this.location)
         .executeUpdate()
         .getKey();
     }
@@ -91,6 +91,15 @@ public class Venue {
           .addParameter("id", id)
           .executeUpdate();
       }
+    }
+  }
+
+  public static List<Venue> searchLocation(String input) {
+    try(Connection con = DB. sql2o.open()) {
+      String sql = "SELECT * FROM venues WHERE location LIKE :input";
+      return con.createQuery(sql)
+        .addParameter("input", input)
+        .executeAndFetch(Venue.class);
     }
   }
 }

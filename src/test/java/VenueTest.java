@@ -58,5 +58,4 @@ public class VenueTest {
     newVenue.update("", "Denver, CO");
     assertEquals("Denver, CO", Venue.find(newVenue.getId()).getLocation());
   }
-
 }

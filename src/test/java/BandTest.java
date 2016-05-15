@@ -57,4 +57,15 @@ public class BandTest {
     newBand.update("The Beatles", "");
     assertEquals("The Beatles", Band.find(newBand.getId()).getName());
   }
+
+  @Test
+  public void addVenue_addsVenueToDB_true() {
+    Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
+    newBand.save();
+    Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+    newVenue.save();
+    newBand.addVenue(newVenue);
+    assertTrue(Band.find(newBand.getId()).getVenues().size() == 1);
+  }
+
 }
