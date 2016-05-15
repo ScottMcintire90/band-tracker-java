@@ -48,7 +48,7 @@ public class Band {
 
   public static List<Band> all() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM bands";
+      String sql = "SELECT * FROM bands ORDER BY name ASC";
       List<Band> all = con.createQuery(sql)
         .executeAndFetch(Band.class);
       return all;

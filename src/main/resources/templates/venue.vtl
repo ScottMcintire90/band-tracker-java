@@ -1,2 +1,9 @@
 <h1 class="header">$venue.getName()</h1>
-<h3>This venue is located in $venue.getLocation()</h3>
+<div class="col-md-6">
+  <h2 class="smallHeader">Location: $venue.getLocation()</h2>
+  <a href="/venues/$venue.getId()/update" class="btn btn-success">Update Venue</a>
+  </br>
+  <a href="/venues/$venue.getId()/delete" class="btn btn-danger">Delete Venue</a>
+  </br>
+  <a href="/" class="btn btn-default">Go Home</a>
+</div>

@@ -1,32 +1,16 @@
 <h1 class = "header">Band Tracker</h1>
+
 <div class="col-md-6">
   <h2 class="smallHeader">Welcome</h2>
   <p>Band tracker is a website application that lets you add, update and delete all
     of your favorite bands and venues. Bands can be searched by genre and venues can
     be searched by location. </p>
-
-  <h3>Search bands by genre:</h3>
-  <form action="/bands/genres" method="get">
-    <div class="form-group col-xs-4">
-      <input class="form-control" for="searchBand" name="searchBand" placeholder="Search:"></input>
-    </div>
-    <div class="form-group col-xs-2">
-      <button class="btn btn-primary" type="submit">Go</button>
-    </div>
-  </form>
-</br>
-</br>
-  <h3>Search venue by location:</h3>
-  <form action="/venues/locations" method="get">
-    <div class="form-group col-xs-4">
-      <input class="form-control" for="searchVenue" name="searchVenue" placeholder="Search:"></input>
-    </div>
-    <div class="form-group col-xs-2">
-      <button class="btn btn-primary" type="submit">Go</button>
-    </div>
-  </form>
-
+  <a href="/genres" class="btn btn-primary">Search Bands by Genre</a>
+  </br>
+  </br>
+  <a href="/locations" class="btn btn-primary">Search Venues by Location</a>
 </div>
+
 <div class="col-md-6">
   <div class="bands">
     <h2 class="smallHeader">Bands</h2>
@@ -37,7 +21,6 @@
     </ul>
     <a href="/bands/new" class="btn btn-primary">Add Band</a>
   </div>
-
   <div class="venues">
     <h2 class="smallHeader">Venues</h2>
     <ul>
@@ -47,5 +30,4 @@
     </ul>
     <a href="/venues/new" class="btn btn-primary">Add Venue</a>
   </div>
-
 </div>

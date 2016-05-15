@@ -1,0 +1,22 @@
+<h1 class="header">Genre Search</h1>
+<div class="col-md-6">
+  <h2>Search bands by genre:</h2>
+  <form action="/genres" method="get">
+    <div class="form-group col-xs-4">
+      <label for="searchBand">Genre:</label>
+      <input class="form-control" for="searchBand" name="searchBand"></input>
+    </div>
+    <div class="form-group col-xs-2">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+<div class="col-md-6">
+  <h2>Bands:<h2>
+    <ul>
+      #foreach($band in $foundBands)
+        <li><a href="/bands/$band.getId()">$band.getName()</a></li>
+      #end
+    </ul>
+</div>
+  <a href="/" class="btn btn-default">Go Home</a>

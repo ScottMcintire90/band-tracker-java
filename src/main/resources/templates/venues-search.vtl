@@ -1,0 +1,22 @@
+<h1 class="header">Venue Search</h1>
+<div class="col-md-6">
+  <h2>Search venues by location:</h2>
+  <form action="/locations" method="get">
+    <div class="form-group col-xs-4">
+      <label for="searchVenue">Location:</label>
+      <input class="form-control" for="searchVenue" name="searchVenue"></input>
+    </div>
+    <div class="form-group col-xs-2">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+<div class="col-md-6">
+  <h2>Venues:<h2>
+    <ul>
+      #foreach($venue in $foundVenues)
+        <li><a href="/venues/$venue.getId()">$venue.getName()</a></li>
+      #end
+    </ul>
+</div>
+  <a href="/" class="btn btn-default">Go Home</a>
