@@ -1,7 +1,26 @@
 .forms {
-  width: 200px;
+  width: 250px;
 }
 
-body {
+.bod {
+  background: url(/images/background.jpeg) no-repeat center center fixed; ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   margin: 50px;
+  font-family: sans-serif;
+}
+
+p {
+  width: 350px;
+}
+
+.header {
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.new {
+  
 }
