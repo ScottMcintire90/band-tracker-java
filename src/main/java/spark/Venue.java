@@ -46,13 +46,51 @@ public class Venue {
     }
   }
 
-
   public static List<Venue> all() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM venues";
       List<Venue> all = con.createQuery(sql)
         .executeAndFetch(Venue.class);
         return all;
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM venues WHERE id=:id";
+      con.createQuery(sql)
+        .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
+
+  public static Venue find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM venues WHERE id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Venue.class);
+    }
+  }
+
+  public void update(String newName, String newLocation) {
+    if(newName.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE venues SET name = :name WHERE id=:id";
+        con.createQuery(sql)
+          .addParameter("name", newName)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+    if(newLocation.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE venues SET location = :location WHERE id=:id";
+        con.createQuery(sql)
+          .addParameter("location", newLocation)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
     }
   }
 }

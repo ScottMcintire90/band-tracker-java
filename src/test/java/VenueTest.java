@@ -27,5 +27,36 @@ public class VenueTest {
     assertTrue(firstVenue.equals(secondVenue));
   }
 
+  @Test
+  public void Save_VenueSavesToDatabase_true() {
+    Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+    newVenue.save();
+    assertTrue(newVenue.all().size() == 1);
+  }
+
+  @Test
+  public void Delete_VenueIsDeleted_true() {
+    Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+    newVenue.save();
+    newVenue.delete();
+    assertTrue(newVenue.all().size() == 0);
+  }
+
+  @Test
+  public void find_findsVenueById_true() {
+    Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+    newVenue.save();
+    Venue foundVenue = Venue.find(newVenue.getId());
+    assertTrue(foundVenue.getName().equals(newVenue.getName()));
+  }
+
+
+  @Test
+  public void update_updateBandName_name() {
+    Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+    newVenue.save();
+    newVenue.update("", "Denver, CO");
+    assertEquals("Denver, CO", Venue.find(newVenue.getId()).getLocation());
+  }
 
 }
