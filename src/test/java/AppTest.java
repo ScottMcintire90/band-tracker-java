@@ -38,6 +38,15 @@ public class AppTest extends FluentTest {
  }
 
  @Test
+ public void displayVenue() {
+   Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+   newVenue.save();
+   String path = String.format("http://localhost:4567/venues/%d", newVenue.getId());
+   goTo(path);
+   assertThat(pageSource()).contains("Crystal Ballroom");
+ }
+
+ @Test
  public void deleteBand() {
    Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
    newBand.save();
@@ -45,6 +54,16 @@ public class AppTest extends FluentTest {
    String path = String.format("http://localhost:4567");
    goTo(path);
    assertThat(pageSource()).doesNotContain("Scotts Tots");
+ }
+
+ @Test
+ public void deleteVenue() {
+   Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+   newVenue.save();
+   newVenue.delete();
+   String path = String.format("http://localhost:4567");
+   goTo(path);
+   assertThat(pageSource()).doesNotContain("Crystal Ballroom");
  }
 
  @Test
@@ -58,6 +77,16 @@ public class AppTest extends FluentTest {
  }
 
  @Test
+ public void updateVenue() {
+   Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+   newVenue.save();
+   newVenue.update("Keller Auditorium", "Portland, OR");
+   String path = String.format("http://localhost:4567/");
+   goTo(path);
+   assertThat(pageSource()).contains("Keller Auditorium");
+ }
+
+ @Test
  public void searchForBands() {
    Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
    newBand.save();
@@ -67,5 +96,17 @@ public class AppTest extends FluentTest {
    String path = String.format("http://localhost:4567/genres?searchBand=Pop");
    goTo(path);
    assertThat(pageSource()).contains("Nsync");
+ }
+
+ @Test
+ public void searchForVenues() {
+   Venue newVenue = new Venue("Crystal Ballroom", "Portland, OR");
+   newVenue.save();
+   Venue secondVenue = new Venue("Keller Auditorium", "Portland, OR");
+   secondVenue.save();
+   Venue.searchLocation("Portland, OR");
+   String path = String.format("http://localhost:4567/locations?searchVenue=Portland");
+   goTo(path);
+   assertThat(pageSource()).contains("Keller Auditorium");
  }
 }
