@@ -22,50 +22,50 @@ public class AppTest extends FluentTest {
  @ClassRule
  public static ServerRule server = new ServerRule();
 
- // @Test
- // public void rootTest() {
- //   goTo("http://localhost:4567/");
- //   assertThat(pageSource()).contains("Add a recipe");
- // }
- //
- // @Test
- // public void displayRecipe() {
- //   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
- //   newRecipe.save();
- //   String path = String.format("http://localhost:4567/recipe/%d", newRecipe.getId());
- //   goTo(path);
- //   assertThat(pageSource()).contains("Scotts Tots");
- // }
- //
- // @Test
- // public void deleteRecipe() {
- //   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
- //   newRecipe.save();
- //   newRecipe.delete();
- //   String path = String.format("http://localhost:4567");
- //   goTo(path);
- //   assertThat(pageSource()).doesNotContain("Scotts Tots");
- // }
- //
- // @Test
- // public void updateRecipe() {
- //   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
- //   newRecipe.save();
- //   newRecipe.update("5", "Todds Tots", "", "");
- //   String path = String.format("http://localhost:4567/");
- //   goTo(path);
- //   assertThat(pageSource()).contains("Todds Tots");
- // }
- //
- // @Test
- // public void searchForIngredient() {
- //   Recipe firstRecipe = new Recipe("4", "Scotts Tots", "beef, cheese","");
- //   firstRecipe.save();
- //   Recipe secondRecipe = new Recipe("3", "Vincents Pots", "eggs, apples","");
- //   secondRecipe.save();
- //   Recipe.getRecipeWithIngredient("beef");
- //   String path = String.format("http://localhost:4567/?search=beef");
- //   goTo(path);
- //   assertThat(pageSource()).contains("searchResult");
- // }
+ @Test
+ public void rootTest() {
+   goTo("http://localhost:4567/");
+   assertThat(pageSource()).contains("Band Tracker");
+ }
+
+ @Test
+ public void displayBand() {
+   Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
+   newBand.save();
+   String path = String.format("http://localhost:4567/bands/%d", newBand.getId());
+   goTo(path);
+   assertThat(pageSource()).contains("Pink Floyd");
+ }
+
+ @Test
+ public void deleteBand() {
+   Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
+   newBand.save();
+   newBand.delete();
+   String path = String.format("http://localhost:4567");
+   goTo(path);
+   assertThat(pageSource()).doesNotContain("Scotts Tots");
+ }
+
+ @Test
+ public void updateBand() {
+   Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
+   newBand.save();
+   newBand.update("The Beatles", "Rock");
+   String path = String.format("http://localhost:4567/");
+   goTo(path);
+   assertThat(pageSource()).contains("The Beatles");
+ }
+
+ @Test
+ public void searchForBands() {
+   Band newBand = new Band("Pink Floyd", "Psychedelic Rock");
+   newBand.save();
+   Band secondBand = new Band("Nsync", "Pop");
+   secondBand.save();
+   Band.searchGenre("Pop");
+   String path = String.format("http://localhost:4567/genres?searchBand=Pop");
+   goTo(path);
+   assertThat(pageSource()).contains("Nsync");
+ }
 }
